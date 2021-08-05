@@ -1,0 +1,18 @@
+alert tcp any any -> any 80 (msg: "Error Based SQL Injection Detected"; content: "%27" ; sid:100000011; )
+alert tcp any any -> any 80 (msg: "Error Based SQL Injection Detected"; content: "22" ; sid:100000012; )
+alert tcp any any -> any 80 (msg: "AND SQL Injection Detected"; content: "and" ; nocase; sid:100000060; )
+alert tcp any any -> any 80 (msg: "OR SQL Injection Detected"; content: "or" ; nocase; sid:100000061; )
+alert tcp any any -> any 80 (msg: "AND SQL Injection Detected"; content: "and" ; nocase; sid:100000008; )
+alert tcp any any -> any 80 (msg: "OR SQL Injection Detected"; content: "or" ; nocase; sid:100000009; )
+alert tcp any any -> any 80 (msg: "Form Based SQL Injection Detected"; content: "%27" ; sid:1000003; )
+alert tcp any any -> any 80 (msg: "Order by SQL Injection"; content: "order" ; sid:1000005; )
+alert tcp any any -> any 80 (msg: "UNION SELECT SQL Injection"; content: "union" ; sid:1000006; )
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg: "Brute Force Detected"; sid:10; rev:1;)
+
+alert tcp any any -> any any (msg:"XSS Attack:"; content:"script"; sid:10000007;rev:002;)
+alert tcp any any -> $HOME_NET any (msg:"XSS Attack:"; content:"img"; sid:10000002;rev:002;)
+alert tcp any any -> $HOME_NET any (msg:"XSS Attack:"; content:"%3C"; sid:10000003;rev:002;)
+alert tcp any any -> $HOME_NET any (msg:"XSS Attack:"; content:"%3E"; sid:10000004;rev:002;)
+alert tcp any any -> $HOME_NET any (msg:"XSS Attack:"; content:"%22"; sid:10000005;rev:002;)
+alert tcp any any -> $HOME_NET any (msg:"XSS Attack:"; content:"%27"; sid:10000006;rev:002;)
